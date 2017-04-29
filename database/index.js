@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/test');
 
 var db = mongoose.connection;
@@ -11,21 +12,54 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var quizSchema = mongoose.Schema({
+  imagename: String,
+  apianswer: String,
+  useranswer: String, 
 });
 
-var Item = mongoose.model('Item', itemSchema);
+// next version, save the user score in User model
 
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
+var Quiz = mongoose.model('Quiz', quizSchema);
+
+Quiz.insert = function(imagename, apianswer, useranswer){
+  var quiz = new Quiz({
+    imagename: imagename, 
+    apianswer: apianswer,
+    useranswer: useranswer
   });
-};
+  quiz.save(function(err, data){
+    if (err){
+      console.log(err);
+    } else {
+      console.log("successfully added quiz question answer");
+    }
+  })
+}
 
-module.exports.selectAll = selectAll;
+Quiz.updateAns = function(field, value){
+  Quiz.update({imagename: field}, 
+    { $set: {useranswer: value} }, 
+    function(err, count){
+      if (err){
+        console.log(err);
+      } else {
+        console.log(count)
+      }
+    }
+  )
+}
+
+module.exports = Quiz;
+
+// var selectAll = function(callback) {
+//   Item.find({}, function(err, items) {
+//     if(err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, items);
+//     }
+//   });
+// };
+
+// module.exports.selectAll = selectAll;

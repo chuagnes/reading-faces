@@ -65,3 +65,4 @@ request.post({url: 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA
     }
     console.log(body, "BODY");
 })
+

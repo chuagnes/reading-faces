@@ -21,4 +21,26 @@ var imageData = [
 "Joe Zizzo.jpg"
 ]
 
+var imageAnswers = {
+  "Agnes Chu.jpg": "joy",
+"Airyque Ervin.jpg": "joy",
+"Alex Liang.jpg": "joy",
+"Ali Elgiadi.jpg": "joy",
+"Anthony Wong.jpg": "joy",
+"Bariz Sudhanshu.jpg": "anger",
+"Bill Beedle.jpg": "surprise",
+"Charles Kim.jpg": "sorrow",
+"Chris Keating.jpg": "joy",
+"David Gould.jpg": "joy",
+"Doug Cox.jpg": "surprise",
+"Drew Bedford-Hart.jpg": "joy",
+"Gunpreet Singh.jpg": "anger",
+"He Liu.jpg": "joy",
+"Jack Ren.jpg": "anger",
+"Jeff Chen.jpg": "joy",
+"Jim Lee.jpg": "surprise",
+"Joe Zizzo.jpg": "anger"
+}
+
+
 module.exports = imageData;

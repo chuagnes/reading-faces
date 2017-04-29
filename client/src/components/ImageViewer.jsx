@@ -2,7 +2,7 @@ import React from 'react';
 
 const ImageViewer = ({image}) => (
   <div>
-    <img src={`../../images/${image}`}></img>
+    <img src={`./images/${image}`}></img>
   </div>
 )
 
