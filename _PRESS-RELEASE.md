@@ -19,20 +19,33 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
+  Headshot EQ
+
+
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+
+  Training game for those looking to sharpen their emotional intelligence and interpretation of facial expressions. 
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  Using headshots as flashcards, this game quizzes the user on identifying facial expressions and compares to answers to those supplied by the Google API. 
+
 ## Problem ##
   > Describe the problem your product solves.
+
+  Interpersonal interaction is murky. People often don't say what they're feeling or thinking. They shield their emotions. Understanding what people may be feeling opens the door for greater empathy and closer relationships. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
+  Psychologist Paul Ekman discovered that all humans show their emotions through 6 common microexpressions, which last only for a flash. This product trains the user on identifying these six microexpressions.   
+
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+
+  
 
 ## How to Get Started ##
   > Describe how easy it is to get started.

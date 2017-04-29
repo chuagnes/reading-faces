@@ -1,14 +1,14 @@
 {
-  "name": "github-fetcher-fullstack-v2",
+  "name": "hrsf75-mvp-starter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "db-dev": "mongod -dbpath database/"
   },
-  "author": "Beth Johnson",
-  "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
@@ -18,11 +18,20 @@
   },
   "dependencies": {
     "express": "^4.15.0",
-    "angular": "^1.6.3",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "jquery": "^3.1.1",
     "mongoose": "^4.8.6",
-    "mysql": "^2.13.0"
-  }
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "requirejs": "^2.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuagnes/hrsf75-mvp-starter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chuagnes/hrsf75-mvp-starter/issues"
+  },
+  "homepage": "https://github.com/chuagnes/hrsf75-mvp-starter#readme"
 }
