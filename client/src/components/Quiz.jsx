@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -11,6 +12,11 @@ class Quiz extends React.Component {
   handleFormSubmit(e){
     e.preventDefault();
     this.props.onSelect(this.state.selectedOption);
+    this.setState({selectedOption: false});
+    // var ele = document.getElementsByName("emotions");
+    // for (var i=0; i<ele.length; i++){
+    //   ele[i].checked = false;
+    // }
     console.log("You have selected: ", this.state.selectedOption);
   }
 
@@ -30,7 +36,7 @@ class Quiz extends React.Component {
           <div className="radio"><label><input type="radio" name="emotions" value="anger" checked={this.state.selectedOption === 'anger'} onChange={this.handleOptionChange.bind(this)} /> Anger </label></div>
           <div className="radio"><label><input type="radio" name="emotions" value="surprise" checked={this.state.selectedOption === 'surprise'} onChange={this.handleOptionChange.bind(this)} /> Surprise </label></div>
           
-          <button className="btn btn-default" type="submit"> Next </button>
+          <button className="btn btn-default" type="submit"> Next </button> 
         </form>
         
       </div>

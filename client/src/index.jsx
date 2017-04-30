@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import {Bootstrap, Grid, Row, Col, Jumbotron} from 'react-bootstrap';
 import ImageViewer from './components/ImageViewer.jsx';
 import Quiz from './components/Quiz.jsx';
 import Answers from './components/Answers.jsx';
@@ -92,6 +93,7 @@ class App extends React.Component {
         }
 
       //need to reset radio button
+      $('input[name="emotions"]').attr('checked', false);
     })
     // render the score. 
     // .then(() => {
@@ -107,11 +109,22 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>Headshot </h1>
-      <ImageViewer image={this.state.currentPhoto}/>
-      <Quiz onSelect={this.insert.bind(this)} />
-      {this.state.showScore ? <Answers score={this.state.score} photos={imageData} answersdata={this.state.answers} /> : null}
+      <Grid>
+      <Row className="center"><h1>Can You Read Faces? </h1></Row>
+      <Row> <h3> Microexpressions are brief, involuntary facial movements that reveal underlying emotions. They are often subtle and difficult to observe. With training, one can pick up facial expression patterns. Spend no more than a few seconds on each one. </h3></Row>
+      <Row>
+        <Col style={{float: 'center'}} md={4}>
+        <ImageViewer image={this.state.currentPhoto}/>
+        </Col>
+        <Col style={{float: 'right'}} md={4}>
+        {this.state.showScore ? null : <Quiz onSelect={this.insert.bind(this)} />}
+        </Col>
+      </Row>
 
+      <Row>
+        {this.state.showScore ? <Answers score={this.state.score} photos={imageData} answersdata={this.state.answers} /> : null}
+      </Row>
+      </Grid>
 
     </div>)
   }
