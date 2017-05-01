@@ -23,17 +23,24 @@ app.get('/answers', function(req, res){
   res.sendFile(path.join(__dirname + '/../client/dist/answers.html'))
 })
 
+// inserts apianswers into db on the page load 
 app.post('/quizrender', function(req, res){
-  Quiz.collection.drop();
-  var imageAnswer = req.body;
-  for (var key in imageAnswer){
-    Quiz.insert(key, imageAnswer[key])
-  };
-  res.end();
 
+  var apiobj = req.body;
+  var id = apiobj.id; 
+  var imgname = apiobj.imagename;
+  var mscores = apiobj.apianswer;
+  var answer = apiobj.answer;
+  var url = apiobj.url;
+  console.log(url, "URLLLLLLL")
+  // console.log(imgname, "IMGNAME")
+  Quiz.insert(id, imgname, mscores, answer, url)
+  res.end();
 })
 
+
 app.post('/quiz', function(req, res){
+  console.log(req.body.answer, "IMGNAME");
   Quiz.updateAns(req.body.imagename, req.body.answer)
   res.end();
   //Quiz.insert()
@@ -49,23 +56,18 @@ app.get('/score', function(req, res){
 
 })
 
-// app.get('/quiz', function(req, res){
-//   res.send(data)
-// })
-
-// app.get('/asp', function (req, res) {
-//   items.selectAll(function(err, data) {
-//     if(err) {
-//       res.sendStatus(500);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
-
 
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
 });
 
+// app.post('/quizrender', function(req, res){
+//   Quiz.collection.drop();
+//   var imageAnswer = req.body;
+//   for (var key in imageAnswer){
+//     Quiz.insert(key, imageAnswer[key])
+//   };
+//   res.end();
+
+// })

@@ -13,20 +13,26 @@ db.once('open', function() {
 });
 
 var quizSchema = mongoose.Schema({
+  id: {type: Number, unique: true},
   imagename: String,
-  apianswer: String,
+  apianswer: Object,
   useranswer: String, 
+  answer: String, 
+  url: String
 });
 
 // next version, save the user score in User model
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 
-Quiz.insert = function(imagename, apianswer, useranswer){
+Quiz.insert = function(id, imagename, apianswer, answer, url, useranswer){
   var quiz = new Quiz({
+    id: id, 
     imagename: imagename, 
     apianswer: apianswer,
-    useranswer: useranswer
+    answer: answer,
+    useranswer: useranswer, 
+    url: url
   });
   quiz.save(function(err, data){
     if (err){
@@ -38,6 +44,7 @@ Quiz.insert = function(imagename, apianswer, useranswer){
 }
 
 Quiz.updateAns = function(field, value){
+  console.log(field, "FIELD")
   Quiz.update({imagename: field}, 
     { $set: {useranswer: value} }, 
     function(err, count){
