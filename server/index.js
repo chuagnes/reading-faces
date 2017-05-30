@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
-var Quiz = require('../database');
+var Index = require('../database');
+var Quiz = require('../database/models/quiz')
 var request = require('request');
 var fs = require('fs');
 const bodyParser = require('body-parser');
@@ -10,21 +11,29 @@ var app = express();
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 })
 
-app.get('/answers', function(req, res){
-  res.sendFile(path.join(__dirname + '/../client/dist/answers.html'))
+app.get('/answers', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+})
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+})
+
+// clears out "your answer" and seeds db
+app.get('/newquiz', function(req, res){
+  Quiz.reset("useranswer")
+  res.end(); 
 })
 
 // inserts apianswers into db on the page load 
 app.post('/quizrender', function(req, res){
+ // queries api for images without api answer 
 
   var apiobj = req.body;
   var id = apiobj.id; 

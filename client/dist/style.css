@@ -1,6 +1,25 @@
-img {
-  max-width: 600px;
-  max-height: 600px
+body {
+  font-family: 'Roboto', serif;
+}
+
+.image-viewer {
+  width: 600px;
+  height: 500px;
+  /*max-width: 600px;
+  max-height: 600px;*/
+  
+    /*
+    width: 600px;
+    height: 500px;
+    background-position: center !important;
+    background-size: 100% auto !important;
+    background-repeat: no-repeat !important;
+    */
+
+  
+  background-position: center;
+  background-size: cover;
+  
 }
 
 h1 {
@@ -11,6 +30,53 @@ h1 {
 h3 {
   text-align: left;
   margin-bottom: 30px;
+}
+
+.home-cover {
+  resize: both;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.home-text{
+  position: absolute;
+  top: 70%;
+  left: 5%;
+  width: 50%;
+  color: Gainsboro;
+
+}
+
+.home-header {
+  font-size: 30px;
+  font-weight: 900;
+
+}
+
+.home-subheader {
+  padding: 10px 10px 10px 0px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.home-button {
+  color: white!important;
+  border-color: white!important;
+  background-color: transparent;
+  border: 1px solid;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.next-button {
+  color: black!important;
+  border-color: black!important;
+  background-color: transparent;
+  border: 1px solid;
+  font-size: 15px;
+  padding: 7px;
+  width: 60px;
 }
 
 .mini {
@@ -30,7 +96,23 @@ h3 {
 .container {
   max-width: 980px;
   /*text-align: center;*/
-  margin: 20px auto;
+  margin: 50px 20px 20px 20px;
+}
+
+.quiz-viewer {
+  border: 1px solid;
+  border-color: gray;
+  margin: 60px 0px 0px 0px;
+}
+
+.quiz {
+  padding: 0px 0px 0px 20px;
+  height: auto;
+}
+
+.quiz-image {
+  float: left;
+  padding-left: 0px;
 }
 
 .table {

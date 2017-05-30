@@ -13,11 +13,6 @@ class Quiz extends React.Component {
     e.preventDefault();
     this.props.onSelect(this.state.selectedOption);
     this.setState({selectedOption: false});
-    // var ele = document.getElementsByName("emotions");
-    // for (var i=0; i<ele.length; i++){
-    //   ele[i].checked = false;
-    // }
-    console.log("You have selected: ", this.state.selectedOption);
   }
 
   handleOptionChange(e){
@@ -39,7 +34,7 @@ class Quiz extends React.Component {
           <div className="radio"><label><input type="radio" name="emotions" value="fear" checked={this.state.selectedOption === 'fear'} onChange={this.handleOptionChange.bind(this)} /> Fear </label></div>
           <div className="radio"><label><input type="radio" name="emotions" value="disgust" checked={this.state.selectedOption === 'disgust'} onChange={this.handleOptionChange.bind(this)} /> Disgust </label></div>
           <div className="radio"><label><input type="radio" name="emotions" value="neutral" checked={this.state.selectedOption === 'neutral'} onChange={this.handleOptionChange.bind(this)} /> Neutral </label></div>
-          <button className="btn btn-default" type="submit"> Next </button> 
+          <button className="next-button" type="submit"> Next </button> 
         </form>
         
       </div>
