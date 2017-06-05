@@ -13,20 +13,9 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
-})
-
-app.get('/answers', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
-})
-
-app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
-})
 
 // clears out "your answer" and seeds db
-app.get('/newquiz', function(req, res){
+app.post('/newquiz', function(req, res){
   Quiz.reset("useranswer")
   res.end(); 
 })
@@ -59,6 +48,7 @@ app.get('/score', function(req, res){
   Quiz.find()
   .exec(
       function(err, data){
+        console.log(data)
         if (err) throw err;
         res.send(data);
   })
@@ -66,6 +56,9 @@ app.get('/score', function(req, res){
 })
 
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'))
+});
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');

@@ -9,6 +9,7 @@ import Answers from './Answers.jsx';
 import imageDatas from '../imagedata.js'
 import Nav from './Nav.jsx';
 import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
+import Modal from 'react-modal'
 
 var photoidx = 0; 
 
@@ -29,7 +30,7 @@ class Base extends React.Component {
   }
 
   componentWillMount() {
-    $.get('/newquiz', function(data, status){
+    $.post('/newquiz', function(data, status){
         if (status === "success"){
           console.log("Quiz reset")
         }
@@ -62,8 +63,6 @@ class Base extends React.Component {
           })
 
           this.setState({showScore: true});
-          console.log("trying to redirect");
-          <Redirect to='/' />
         }
     })
     .fail(({responseJSON}) => {
@@ -75,10 +74,21 @@ class Base extends React.Component {
   }
 
   render () {
+
+    const { from } = this.props.location.state || '/'
+
     return (
       <BrowserRouter>
       <div>
 
+        <Modal 
+          isOpen={this.state.showScore}
+          contentLabel="Score Popup"
+        >
+
+        <Score score={this.state.score} photos={imageDatas} answersdata={this.state.answers} />
+
+        </Modal>
 
         <div className="container">
           <div className="row quiz-viewer">
@@ -91,7 +101,9 @@ class Base extends React.Component {
             </div>
           </div>
         </div>
-        
+
+      }
+
     </div>
     </BrowserRouter>
     )
@@ -100,22 +112,3 @@ class Base extends React.Component {
 
 export default Base
 
-// <Nav />
-//       <Grid>
-      
-//       <Row> <h3> </h3></Row>
-//       <Row>
-//         <Col style={{float: 'center'}} md={8}>
-//         <ImageViewer image={this.state.currentPhoto}/>
-//         </Col>
-//         <Col style={{float: 'right'}} md={4}>
-//         {this.state.showScore ? null : <Quiz onSelect={this.insert.bind(this)} />}
-//         </Col>
-//       </Row>
-
-//       <Row>
-//         {this.state.showScore ? <Answers score={this.state.score} photos={imageDatas} answersdata={this.state.answers} /> : null}
-//       </Row>
-//       </Grid>
-
-//     </div>)

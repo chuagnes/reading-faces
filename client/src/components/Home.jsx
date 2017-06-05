@@ -23,7 +23,7 @@ class Home extends React.Component {
   
       
       <Route exact path='/home' component={Base} />
-      <Route path='/about' component={About} />
+      
       <Route path='/answers' component={Answers} />
 
          

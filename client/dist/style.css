@@ -5,20 +5,8 @@ body {
 .image-viewer {
   width: 600px;
   height: 500px;
-  /*max-width: 600px;
-  max-height: 600px;*/
-  
-    /*
-    width: 600px;
-    height: 500px;
-    background-position: center !important;
-    background-size: 100% auto !important;
-    background-repeat: no-repeat !important;
-    */
-
-  
-  background-position: center;
-  background-size: cover;
+  background-position: center !important;
+  background-size: cover !important;
   
 }
 
@@ -31,6 +19,20 @@ h3 {
   text-align: left;
   margin-bottom: 30px;
 }
+
+.navbar {
+  background-color: black;
+  border-style: none;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #fff !important;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+    color: #777 !important;
+}
+
 
 .home-cover {
   resize: both;

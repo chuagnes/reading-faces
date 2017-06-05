@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
 import Home from './components/Home.jsx';
-// import Base from './components/Base.jsx';
-// import About from './components/About.jsx';
-
-// import Answers from './components/Answers.jsx';
+import Base from './components/Base.jsx';
+import About from './components/About.jsx';
+import Nav from './components/Nav.jsx'
+import Answers from './components/Answers.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +14,11 @@ class App extends React.Component {
     this.state = { 
     }
   }
+
+
+  
+      
+      
 
   render () {
 
@@ -33,10 +38,13 @@ class App extends React.Component {
     )
 
     return (
+
     <div>
-        
+      <Nav />
         <Route exact path='/' component={LandingPage} />
-        <Route path='/home' component={Home} />
+        <Route path='/about' component={About} />
+        <Route exact path='/home' component={Base} />
+       <Route path='/answers' component={Answers} />
 
         
 
