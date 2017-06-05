@@ -10,6 +10,7 @@ import imageDatas from '../imagedata.js'
 import Nav from './Nav.jsx';
 import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
 import Modal from 'react-modal'
+import Score from './Score.jsx'
 
 var photoidx = 0; 
 
@@ -30,6 +31,7 @@ class Base extends React.Component {
   }
 
   componentWillMount() {
+
     $.post('/newquiz', function(data, status){
         if (status === "success"){
           console.log("Quiz reset")
@@ -49,7 +51,6 @@ class Base extends React.Component {
         if (photoidx < imageDatas.length){
           this.setState({currentPhoto: imageDatas[photoidx]})
         } else {
-          // alert("Reached End of Photos")
           var score = 0;
           var context = this;
           $.get('/score', function(data){
@@ -78,7 +79,6 @@ class Base extends React.Component {
     const { from } = this.props.location.state || '/'
 
     return (
-      <BrowserRouter>
       <div>
 
         <Modal 
@@ -92,20 +92,18 @@ class Base extends React.Component {
 
         <div className="container">
           <div className="row quiz-viewer">
-            <div className="quiz-image col-md-8">
+            <div className="quiz-image col-md-9">
               <ImageViewer image={this.state.currentPhoto}/>
             </div>
-            <div className="quiz col-md-4">
+            <div className="quiz col-md-3">
               <p> {photoidx} / {imageDatas.length} </p>
               <Quiz onSelect={this.insert.bind(this)} />
             </div>
           </div>
         </div>
 
-      }
 
     </div>
-    </BrowserRouter>
     )
   }
 }

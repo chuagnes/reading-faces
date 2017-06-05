@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 
 class Score extends React.Component {
   constructor(props){
@@ -10,11 +12,13 @@ class Score extends React.Component {
 
   render(){
 
-    let { score, photos } = this.state
+    let { score, photos } = this.props
 
     return (
-      <div><Jumbotron> You got {score} questions right out of {photos.length} </Jumbotron></div> 
-
+      <div>
+      <div>You got {score} questions right out of {photos.length} </div> 
+      <p><Link to="/answers"><button className="btn btn-primary btn-sm" > Compare to Microsoft</button> </Link></p>
+      </div>
 
     )
 

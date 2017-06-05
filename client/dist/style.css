@@ -3,8 +3,8 @@ body {
 }
 
 .image-viewer {
-  width: 600px;
-  height: 500px;
+  width: 800px;
+  height: 700px;
   background-position: center !important;
   background-size: cover !important;
   
@@ -18,6 +18,55 @@ h1 {
 h3 {
   text-align: left;
   margin-bottom: 30px;
+}
+
+table {
+  text-align: left;
+  font-size: 25px !important;
+  font-family: 'Roboto', serif;
+
+}
+
+th {
+  text-align: left;
+  border-bottom: 2px solid black;
+}
+
+tr {
+  /*padding: 10px;*/
+}
+
+td {
+  text-align: left;
+  vertical-align: middle !important;
+  padding: 40px;
+  border-top: 1px solid #ddd;
+
+}
+
+.table>tbody>tr>td, {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  font-size: 20px;
+}
+.ts {
+  text-align: left !important;
+  padding: 20px 0px 0px 0px !important;
+  border-style: none !important;
+  font-size: 15px !important;
+}
+
+.bs {
+  padding: 0px 0px 20px 0px !important;
+  border-style: none !important;
+  font-size: 15px !important;
+  text-align: left !important;
+}
+.sr {
+  text-align: left !important;
+  padding: 0px !important;
+  border-style: none !important;
+  font-size: 15px !important;
 }
 
 .navbar {
@@ -81,9 +130,13 @@ h3 {
   width: 60px;
 }
 
+.next-button:focus {
+  outline: none;
+}
+
 .mini {
-  max-width: 100px;
-  max-height: 100px
+  max-width: 200px;
+  max-height: 200px
 }
 
 .answer {
@@ -95,10 +148,8 @@ h3 {
   margin-right: -20%;
 }
 
-.container {
-  max-width: 980px;
-  /*text-align: center;*/
-  margin: 50px 20px 20px 20px;
+.answerbox {
+  margin: 100px 0px 0px 0px;
 }
 
 .quiz-viewer {
@@ -117,10 +168,3 @@ h3 {
   padding-left: 0px;
 }
 
-.table {
-  text-align: center;
-}
-
-#ms {
-  font-size: 25px;
-}

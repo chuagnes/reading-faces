@@ -44,7 +44,7 @@ class App extends React.Component {
         <Route exact path='/' component={LandingPage} />
         <Route path='/about' component={About} />
         <Route exact path='/home' component={Base} />
-       <Route path='/answers' component={Answers} />
+        <Route path='/answers' component={Answers} />
 
         
 

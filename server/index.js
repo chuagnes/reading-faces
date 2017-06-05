@@ -39,6 +39,9 @@ app.post('/quizrender', function(req, res){
 
 app.post('/quiz', function(req, res){
   console.log(req.body.answer, "IMGNAME");
+  if (req.body.answer === "false" || req.body.answer === ""){
+    req.body.answer = "None given"
+  }
   Quiz.updateAns(req.body.imagename, req.body.answer)
   res.end();
   //Quiz.insert()
@@ -53,6 +56,20 @@ app.get('/score', function(req, res){
         res.send(data);
   })
 
+})
+
+app.post('/quizrender', function(req, res){
+
+  var apiobj = req.body;
+  var id = apiobj.id; 
+  var imgname = apiobj.imagename;
+  var mscores = apiobj.apianswer;
+  var answer = apiobj.answer;
+  var url = apiobj.url;
+  console.log(url, "URLLLLLLL")
+  // console.log(imgname, "IMGNAME")
+  Quiz.insert(id, imgname, mscores, answer, url)
+  res.end();
 })
 
 
