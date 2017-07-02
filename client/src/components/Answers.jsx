@@ -1,7 +1,6 @@
 import React from 'react';
 import {Bootstrap, Grid, Row, Col, Jumbotron} from 'react-bootstrap';
 import $ from 'jquery';
-// import QuestionEntry from './QuestionEntry.jsx';
 
 
 class Answers extends React.Component {
@@ -21,7 +20,7 @@ class Answers extends React.Component {
 
   render(){
 
-    var userans = [], correctans = [], apians = [], one = [], two = [], three = [], four = [], five = [], six = [], seven = [], eight = [], nine = [];
+    var userans = [], correctans = [], apians = [];
 
     const parse = function(data){
 

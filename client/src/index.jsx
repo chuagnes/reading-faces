@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
-// import Home from './components/Home.jsx';
 import Base from './components/Base.jsx';
 import About from './components/About.jsx';
 import Nav from './components/Nav.jsx'
@@ -12,14 +10,8 @@ import ImageUpload from './components/ImageUpload.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-    }
-  }
 
-
-  
-      
-      
+  }      
 
   render () {
 

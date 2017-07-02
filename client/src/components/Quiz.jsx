@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class Quiz extends React.Component {
   render() {
     return ( 
       <div>
-
+        <p> </p>
         <form onSubmit={this.handleFormSubmit.bind(this)}>
           <div className="radio"><label><input type="radio" name="emotions" value="happiness" checked={this.state.selectedOption === 'happiness'} onChange={this.handleOptionChange.bind(this)} /> Happiness </label></div>
           <div className="radio"><label><input type="radio" name="emotions" value="sadness" checked={this.state.selectedOption === 'sadness'} onChange={this.handleOptionChange.bind(this)} /> Sadness </label></div>
