@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Fun quiz to test your skills at reading micro-expressions.",
   "license": "ISC",
+  "engines": {
+    "node": "7.x"
+  },
   "homepage": "https://github.com/chuagnes/reading-faces/blob/master/README.md",
   "main": "webpack.config.js",
   "scripts": {
