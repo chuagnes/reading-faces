@@ -20,8 +20,7 @@
     "seed": "node database/seed.js"
   },
   "devDependencies": {
-    "axios": "^0.16.2",
-    "request": "^2.81.0"
+    "axios": "^0.16.2"
   },
   "dependencies": {
     "babel-core": "^6.23.1",
@@ -43,6 +42,7 @@
     "superagent": "^3.5.2",
     "webpack": "^2.2.1",
     "mongodb": "^2.2.27", 
-    "react-modal": "^1.7.7"
+    "react-modal": "^1.7.7", 
+    "request": "^2.81.0"
   }
 }
