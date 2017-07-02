@@ -7,6 +7,7 @@ import Base from './components/Base.jsx';
 import About from './components/About.jsx';
 import Nav from './components/Nav.jsx'
 import Answers from './components/Answers.jsx';
+import ImageUpload from './components/ImageUpload.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class App extends React.Component {
         <Route path='/about' component={About} />
         <Route exact path='/home' component={Base} />
         <Route path='/answers' component={Answers} />
+        <Route path='/analyze' component={ImageUpload} />
 
         
 

@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 class Score extends React.Component {
   constructor(props){
     super(props)
-
-
   }
-
 
   render(){
 
@@ -16,14 +13,13 @@ class Score extends React.Component {
 
     return (
       <div>
-      <div>You got {score} questions right out of {photos.length} </div> 
-      <p><Link to="/answers"><button className="btn btn-primary btn-sm" > Compare to Microsoft</button> </Link></p>
+      <div style={{ fontSize: 20 }}>You got {score} {score === 1 ? 'question' : 'questions'} right out of {photos.length} </div> 
+      <p style={{textAlign: 'center'}}><Link to="/answers"><button className="compare-button" > Compare to Microsoft</button> </Link></p>
       </div>
 
     )
-
   }
-
 }
 
 export default Score
+

@@ -20,4 +20,10 @@ module.exports = {
       }
     ]
   }
+  // plugins: [
+  //   new webpack.DefinePlugin({ "global.GENTLY": false })
+  // ],
+  // node: {
+  //   __dirname: true,
+  // }
 };

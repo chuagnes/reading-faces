@@ -1,10 +1,16 @@
 var express = require('express');
+var superagent = require('superagent')
 var path = require('path');
 var Index = require('../database');
 var Quiz = require('../database/models/quiz')
 var request = require('request');
 var fs = require('fs');
 const bodyParser = require('body-parser');
+var multer = require('multer');
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./config/aws.config.json'); // from root file
+const config = require('../config/default.json')['Microsoft'];
+const s3 = new AWS.S3();
 
 var app = express();
 
@@ -13,30 +19,50 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5248800 },
+})
+
+app.post('/upload', upload.single('imgfile'), (req, res) => {
+  s3.upload({
+    Bucket: 'readingfaces',
+    Key: Math.random()+req.file.originalname, 
+    Body: req.file.buffer,
+    ACL: 'public-read', 
+  }, (err, data) => { 
+    if (err){
+      return res.status(400).send(err);
+    } else {
+      superagent
+      .post('https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize')
+      .send({ "url": data.Location }) 
+      .set({ "Ocp-Apim-Subscription-Key": config.key, Accept: 'application/json' })
+      .end(function(err, agentres){
+        if (err){
+          console.error(err, "error")
+        } else {
+          var body = [data.Location, req.file.originalname, agentres.body]
+          res.send(body);
+        }
+      })
+    }
+  })
+})
+
 
 // clears out "your answer" and seeds db
-app.post('/newquiz', function(req, res){
-  Quiz.reset("useranswer")
-  res.end(); 
+app.get('/newquiz', function(req, res){
+  Quiz.update({ useranswer: {$exists: true}}, {$set: {useranswer: ""}}, {multi: true})
+  console.log("resetting quiz")
+  Quiz.find()
+  .sort({ id: 1})
+  .exec(function(err, data){
+    res.send(data)
+  }) 
 })
 
-// inserts apianswers into db on the page load 
-app.post('/quizrender', function(req, res){
- // queries api for images without api answer 
-
-  var apiobj = req.body;
-  var id = apiobj.id; 
-  var imgname = apiobj.imagename;
-  var mscores = apiobj.apianswer;
-  var answer = apiobj.answer;
-  var url = apiobj.url;
-  console.log(url, "URLLLLLLL")
-  // console.log(imgname, "IMGNAME")
-  Quiz.insert(id, imgname, mscores, answer, url)
-  res.end();
-})
-
-
+// updates user's answers as he/she goes through quiz 
 app.post('/quiz', function(req, res){
   console.log(req.body.answer, "IMGNAME");
   if (req.body.answer === "false" || req.body.answer === ""){
@@ -44,7 +70,6 @@ app.post('/quiz', function(req, res){
   }
   Quiz.updateAns(req.body.imagename, req.body.answer)
   res.end();
-  //Quiz.insert()
 })
 
 app.get('/score', function(req, res){
@@ -58,18 +83,22 @@ app.get('/score', function(req, res){
 
 })
 
-app.post('/quizrender', function(req, res){
+//adds new image to the database
+app.post('/newimage', function(req, res){
+  console.log(req.body, "WHAT IS THE REQUEST?")
+  Quiz.count(function(err, data){
+    req.body["id"] = data+1;
+    // console.log(req.body, "OBJ TO CREATE")
+    Quiz.create(req.body, function(err, obj){
+      if (err){
+        console.error(err, "Error adding image to quiz")
+      } else {
+        res.status(200).end()
+      }
+    })
+  })
 
-  var apiobj = req.body;
-  var id = apiobj.id; 
-  var imgname = apiobj.imagename;
-  var mscores = apiobj.apianswer;
-  var answer = apiobj.answer;
-  var url = apiobj.url;
-  console.log(url, "URLLLLLLL")
-  // console.log(imgname, "IMGNAME")
-  Quiz.insert(id, imgname, mscores, answer, url)
-  res.end();
+
 })
 
 
@@ -81,12 +110,3 @@ app.listen(3000, function() {
   console.log('listening on port 3000!');
 });
 
-// app.post('/quizrender', function(req, res){
-//   Quiz.collection.drop();
-//   var imageAnswer = req.body;
-//   for (var key in imageAnswer){
-//     Quiz.insert(key, imageAnswer[key])
-//   };
-//   res.end();
-
-// })

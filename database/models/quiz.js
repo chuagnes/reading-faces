@@ -11,26 +11,9 @@ var quizSchema = mongoose.Schema({
 
 var Quiz = mongoose.model('Quiz', quizSchema);
 
-Quiz.insert = function(id, imagename, apianswer, answer, url, useranswer){
-  var quiz = new Quiz({
-    id: id, 
-    imagename: imagename, 
-    apianswer: apianswer,
-    answer: answer,
-    useranswer: useranswer, 
-    url: url
-  });
-  quiz.save(function(err, data){
-    if (err){
-      console.log(err);
-    } else {
-      console.log("successfully added quiz question answer");
-    }
-  })
-}
 
 Quiz.reset = function(field){
-   Quiz.update({ field: {$exists: true}}, {$unset: {field: ""}}, {multi: true})
+   Quiz.update({ field: {$exists: true}}, {$unset: {field: "hello"}}, {multi: true})
    console.log("reset quiz")
 }
 

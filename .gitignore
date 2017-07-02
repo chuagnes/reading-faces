@@ -1,1 +1,4 @@
 node_modules
+database/db
+config/aws.config.json
+config/default.json

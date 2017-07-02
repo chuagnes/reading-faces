@@ -23,7 +23,7 @@ class Answers extends React.Component {
 
     var userans = [], correctans = [], apians = [], one = [], two = [], three = [], four = [], five = [], six = [], seven = [], eight = [], nine = [];
 
-    var parse = function(data){
+    const parse = function(data){
 
       //sort the data, which was returned asynch, by id
       data = data.sort(function(a,b){
@@ -62,7 +62,7 @@ class Answers extends React.Component {
       <div className="answerbox">
 
       <div className="table-responsive">
-        <table className="table">
+        <table className="answerstable">
         <thead>
             <th> </th>
             <th> Answer </th>
