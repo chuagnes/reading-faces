@@ -8,12 +8,3 @@ const ImageViewer = ({image}) => (
 
 export default ImageViewer;
 
- // <img src={`./images/${image}`}></img>
-
-/*
-
- <div >
-    <img className="image-viewer" src={image.url}></img>
-  </div>
-
-*/

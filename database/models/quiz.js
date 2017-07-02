@@ -12,12 +12,6 @@ var quizSchema = mongoose.Schema({
 var Quiz = mongoose.model('Quiz', quizSchema);
 
 
-Quiz.reset = function(field){
-   Quiz.update({ field: {$exists: true}}, {$unset: {field: "hello"}}, {multi: true})
-   console.log("reset quiz")
-}
-
-
 Quiz.updateAns = function(field, value){
   Quiz.update({imagename: field}, 
     { $set: {useranswer: value} }, 
