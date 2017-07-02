@@ -6,7 +6,6 @@ import ImageViewer from './ImageViewer.jsx';
 import Quiz from './Quiz.jsx';
 import About from './About.jsx';
 import Answers from './Answers.jsx';
-import imageDatas from '../imagedata.js'
 import Nav from './Nav.jsx';
 import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
 import Modal from 'react-modal'
@@ -23,9 +22,6 @@ class Base extends React.Component {
       score: 0,
       showScore: false, 
       answers: []
-      // userarr: [],
-      // apiarr: [],
-      // ansarr: []
     }
   }
 
