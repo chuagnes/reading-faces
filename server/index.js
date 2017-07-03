@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 var multer = require('multer');
 var AWS = require('aws-sdk');
 // AWS.config.loadFromPath('./config/aws.config.json'); // from root file
-const config = process.env.MS_KEY ||require('../config/default.json')['Microsoft'];
+const config = process.env.MS_KEY ||require('../config/default.json')['Microsoft']['key'];
 const s3 = new AWS.S3({
   accessKeyId: process.env.S3_KEY || require('../config/aws.config.json')["accessKeyId"],
   secretAccessKey: process.env.S3_SECRET || require('../config/aws.config.json')["secretAccessKey"],
@@ -41,7 +41,7 @@ app.post('/upload', upload.single('imgfile'), (req, res) => {
       superagent
       .post('https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize')
       .send({ "url": data.Location }) 
-      .set({ "Ocp-Apim-Subscription-Key": config.key, Accept: 'application/json' })
+      .set({ "Ocp-Apim-Subscription-Key": config, Accept: 'application/json' })
       .end(function(err, agentres){
         if (err){
           console.error(err, "error")
