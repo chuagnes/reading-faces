@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/test');
+
+var url = process.env.MONGOLAB_URI || 'mongodb://localhost/test';
+
+mongoose.connect(url)
 
 var db = mongoose.connection;
 
