@@ -8,9 +8,13 @@ var fs = require('fs');
 const bodyParser = require('body-parser');
 var multer = require('multer');
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./config/aws.config.json'); // from root file
-const config = require('../config/default.json')['Microsoft'];
-const s3 = new AWS.S3();
+// AWS.config.loadFromPath('./config/aws.config.json'); // from root file
+const config = process.env.MS_KEY ||require('../config/default.json')['Microsoft'];
+const s3 = new AWS.S3({
+  accessKeyId: process.env.S3_KEY || require('../config/aws.config.json')["accessKeyId"],
+  secretAccessKey: process.env.S3_SECRET || require('../config/aws.config.json')["secretAccessKey"],
+  region: "us-west-1"
+});
 
 var app = express();
 
@@ -106,7 +110,9 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/dist/index.html'))
 });
 
-app.listen(3000, function() {
-  console.log('listening on port 3000!');
+
+const port = process.env.PORT || 3000;
+app.listen(port, function() {
+  console.log('listening on port!', port);
 });
 
